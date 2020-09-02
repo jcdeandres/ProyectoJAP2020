@@ -40,8 +40,27 @@ var getJSONData = function(url){
     });
 }
 
+function showUserOnly(email){
+  let user = "";
+  let i = 0;
+  while ((email != null) && (i < email.length) && (email[i] != "@")) {
+    user = user + email[i];
+    i++;
+  }
+  return user;
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  showUser = document.getElementById('correo');
+  userName = localStorage.getItem('Email :');
+  let arrayUser = showUserOnly(userName);
+  if (userName === null) {
+    window.location.href = '/login';
+  }
+  imageUser = `<img src="user.png" style="margin-right: 10px;" width="25" height="25">`;
+  showUser.innerHTML = imageUser + arrayUser;
+
 });
