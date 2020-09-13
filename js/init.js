@@ -57,8 +57,9 @@ document.addEventListener("DOMContentLoaded", function(e){
   showUser = document.getElementById('correo');
   userName = localStorage.getItem('Email :');
   let arrayUser = showUserOnly(userName);
+  localStorage.setItem('Usuario solo: ', arrayUser);
   if (userName === null) {
-    window.location.href = '/login';
+    window.location.href = 'login.html';
   }
   imageUser = `<img src="user.png" style="margin-right: 10px;" width="25" height="25">`;
   showUser.innerHTML = imageUser + arrayUser;

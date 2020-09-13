@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         localStorage.setItem('Email :', email);
 
         if (email != null) {
-            window.location.href = '/';
+            window.location.href = 'index.html';
         }
 
     };
