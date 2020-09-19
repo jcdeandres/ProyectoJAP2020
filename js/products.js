@@ -87,8 +87,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //JSON que devuelve en "resultObj" los productos
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok") {
+            console.log(resultObj.data);
             sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data);
         }
+        console.log(resultObj.data);
     });
 
     document.getElementById("sortAsc").addEventListener("click", function(){

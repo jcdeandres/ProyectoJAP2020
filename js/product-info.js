@@ -8,14 +8,45 @@ function showImagesGallery(array){
         let imageSrc = array[i];
 
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+                </div>
             </div>
-        </div>
         `
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+    }
+}
+
+function showCarouselImagesGallery(arrayImg) {
+    let carouselIndicators = ``;
+    let carouselImages = ``;
+    
+    for (let i = 0; i < arrayImg.length; i++) {
+        if (i === 0) {
+            //Primera imagen que se muestra
+            carouselIndicators = ` 
+            <li data-target="#carouselImagesGallery" data-slide-to="` + i +`" class="active"></li>
+            `
+            carouselImages = ` 
+                <div class="carousel-item active">
+                    <img src="` + arrayImg[i] + `" class="d-block w-100" alt="">
+                </div>
+            `
+        }else{
+            //El resto de las imagenes
+            carouselIndicators += ` 
+                <li data-target="#carouselImagesGallery" data-slide-to="` + i + `"></li>
+            `
+            carouselImages += ` 
+                <div class="carousel-item">
+                    <img src="` + arrayImg[i] + `" class="d-block w-100" alt="">
+                </div>
+            `
+        }
+        document.getElementById("carouselIndicators").innerHTML = carouselIndicators;
+        document.getElementById("carouselImages").innerHTML = carouselImages;
     }
 }
 
@@ -38,21 +69,44 @@ function showProductComments(array) {
     let stars = "";
 
     for (let i = 0; i < array.length; i++) {
-        comments = array[i];
+        let comments = array[i];
         stars = showStars(comments.score);
         const imageUser = `<img src="user.png" style="margin-right: 10px;" width="25" height="25">`;
         htmlContentToAppend += `
-        <div class="comments">
-            <p>` + imageUser + `<b>` + comments.user + `</b>` + ` - Calificación: ` + stars + `</p>
-            <p>`+ comments.description + `</p>
-            <p>` + comments.dateTime + `</p>
-        </div>
-        <hr>
+            <div class="comments">
+                <p>` + imageUser + `<b>` + comments.user + `</b>` + ` - Calificación: ` + stars + `</p>
+                <p>` + comments.description + `</p>
+                <p>` + comments.dateTime + `</p>
+            </div>
+            <hr>
         `
     }
     document.getElementById("productComments").innerHTML = htmlContentToAppend;
 }
 
+function showRelatedProducts(arrayRelatedProducts, allProducts) {
+    let htmlContentToAppend = "";
+
+    for (let i = 0; i < arrayRelatedProducts.length; i++) {
+        let j = arrayRelatedProducts[i];
+        let related = allProducts[j];
+        htmlContentToAppend += `
+            
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="d-block mb-4 h-100">
+                        <a href="product-info.html" class="list-group-item-action list-group-item">
+                            <img src="` + related.imgSrc + `" class="img-thumbnail">
+                            <h5 class="mb-1">`+ related.name + `</h5>
+                            <h5 class="mb-1">`+ related.currency + ` `+ related.cost + `</h5>
+                        </a>
+                    </div>
+                </div>
+
+            `
+    }
+    document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
+
+}
 
 function showNewCommentsStars(scoreStars) {
     let stars = `<h3>` + showStars(scoreStars) + `</h3>`
@@ -84,6 +138,18 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+
+            //Muestro las imagenes en el carrusel
+            showCarouselImagesGallery(product.images);
+            
+            //Productos relacionados
+            getJSONData(PRODUCTS_URL).then(function(resultObj){
+                if (resultObj.status === "ok") {
+                    let allProducts = resultObj.data;
+                    let arrayRelatedProducts = product.relatedProducts;
+                    showRelatedProducts(arrayRelatedProducts, allProducts);
+                }
+            });
         }
     });
 

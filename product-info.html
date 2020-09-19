@@ -29,8 +29,16 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <a id="correo" class="py-2 d-none d-md-inline-block" href="#"></a>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="user.png" style="margin-right: 10px;" width="25" height="25"><span id="correo"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="cart.html">Ver carrito</a>
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+          <a class="dropdown-item" id="logout" href="#">Cerrar sesión</a>
+        </div>
+      </div>
     </div>
   </nav>
   <div class="container p-5">
@@ -63,6 +71,27 @@
       <dd>
         <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
         </div>
+        <!--Carousel-->
+        <div id="carouselImagesGallery" class="container carousel slide w-75" data-ride="carousel">
+          <ol class="carousel-indicators" id="carouselIndicators">
+          </ol>
+          <div class="carousel-inner" id="carouselImages">
+          </div>
+          <a class="carousel-control-prev" href="#carouselImagesGallery" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselImagesGallery" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <!--Carousel-->
+      </dd>
+      <br>
+      <dt>Productos relacionados</dt>
+      <dd>
+        <div class="row text-center text-lg-left pt-2" id="relatedProducts"></div>
       </dd>
       <dt>Comentarios</dt>
       <dd>
@@ -77,7 +106,7 @@
         <div id="newComment">
           <form id="formComment">
             <p>Escribir nuevo comentario</p>
-              <textarea class="form-control" id="comment" placeholder="Nuevo comentario..." style="width: 50%;"></textarea>
+              <textarea class="form-control" id="comment" placeholder="Nuevo comentario..." style="width: 50%;" required></textarea>
             <br>
             <p>Puntuación</p>
             <div id="StarsComments"></div>
