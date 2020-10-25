@@ -81,13 +81,158 @@
         <div class="table-dark p-4 col-12 col-md-4">
             <div class="table-hover" id="totalAndSubtotal">
             </div>
-          <div class="text-lg-right">
-            <!--ENVIOS-->
-            <div id="shipping" class="ml-2">
+          <div>
+          <!--ENVIOS-->
+          <hr class="table-light">
+          <div class="row">
+            <div id="shipping" class="col-12 ml-2">
+
+              <form class="text-lg-left" id="shippingForm">
+                <p><u>Selecciona tu tipo de envío: </u></p>
+                <div class="col">
+                    <input class="form-check-input" type="radio" name="shipp" id="shipp0" value="premium" required>
+                    <label class="form-check-label" for="shipp0"><small>Premium (2-5 días) - Costo del 15% sobre el subtotal.</small></label>
+                </div>
+    
+                <div class="col"> 
+                    <input class="form-check-input" type="radio" name="shipp" id="shipp1" value="standard">
+                    <label class="form-check-label" for="shipp1"><small>Express (5-8 días) - Costo del 7% sobre el subtotal.</small></label>
+                </div>
+                
+                <div class="col">
+                    <input class="form-check-input" type="radio" name="shipp" id="shipp2" value="express">
+                    <label class="form-check-label" for="shipp2"><small>Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</small></label>
+                </div>
+              </form>
+                
+                <!-- Button trigger modal -->
+                <div class="text-lg-right">    
+                    <button type="button" class="mt-3 btn btn-warning text-lg-right" data-toggle="modal" data-target="#staticBackdrop">
+                        Continuar a Método de pago y envío
+                    </button>
+                </div>
+    
+                <!-- Modal -->
+                <div class="modal fade text-dark" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Método de pago y envío</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                          <p>Completa la siguiente información antes de finalizar:</p>
+                          <form>
+                              <div class="form-group input-group-sm">
+                                <label for="method"><small>Selecciona un método de pago</small></label>
+                                <select onchange="methodPay(selectMethod)" id="method" class="form-control col-md-4">
+                                  <option value="method1" selected>Tarjeta de crédito</option>
+                                  <option value="method2" >Transferencia bancaria</option>
+                                </select>
+                              </div>
+                              <div class="form-row input-group-sm" id="methodPay">
+                                <div class="form-group input-group-sm col-md-3">
+                                  <label><small>Número de la tarjeta:</small></label>
+                                    <input name="credit-number" class="form-control" type="tel" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required>
+                                </div>
+                                <div class="pl-5 col">
+                                  <label><small>Fecha de vencimiento y código de seguridad:</small></label>
+                                  <div class="form-row">
+                                    <div class="form-group input-group-sm col-md-2">
+                                      <select class="form-control" name="month" id="month">
+                                        <option value="--">--</option>
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option value="3">03</option>
+                                        <option value="4">04</option>
+                                        <option value="5">05</option>
+                                        <option value="6">06</option>
+                                        <option value="7">07</option>
+                                        <option value="8">08</option>
+                                        <option value="9">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                      </select>
+                                    </div>
+                                    <div class="input-group-sm col-md-2">
+                                      <select class="form-control" name="year" id="year">
+                                        <option value="----">----</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                      </select>
+                                    </div>
+                                    <div class="input-group-sm col-md-2">
+                                      <input type="tel" inputmode="numeric" pattern="[0-9\s]{3,5}" class="form-control" id="securityCode" maxlength="4" required>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <h5>Información de facturación</h5>
+                              <hr>
+                              <div class="form-row">
+                                <div class="col">
+                                  <div class="form-row">
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label for="name"><small>Nombre:</small></label>
+                                      <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label for="surname"><small>Apellidos:</small></label>
+                                      <input type="text" class="form-control" id="surname" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label for="adress"><small>Dirección:</small></label>
+                                      <input type="text" class="form-control" id="adress" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label for="telphone"><small>Teléfono:</small></label>
+                                      <input type="tel" class="form-control" id="telphone" required>
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label><small>País:</small></label>
+                                      <select class="form-control" name="country" id="country">
+                                        <option value="Uruguay">Uruguay</option>
+                                        <option value="Otro país">Otro país...</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label for="location"><small>Localidad:</small></label>
+                                      <input type="text" class="form-control" id="location" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-auto">
+                                      <label for="postal"><small>Codigo postal o zip:</small></label>
+                                      <input type="text" class="form-control" id="postal" required>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Atrás</button>
+                            <button type="submit" class="btn btn-warning">Finalizar compra</button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
             </div>
-            <!--ENVIOS-->
-            <button type="button" class="mt-3 btn btn-warning">Finalizar Compra</button>
+            <div class="col"></div>
           </div>
+          <!--ENVIOS-->
         </div>
         <!--Check Out-->
       </div>
