@@ -31,6 +31,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+  <link href="css/profile.css" rel="stylesheet">
 </head>
 
 <body>
@@ -53,11 +54,167 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="bootstrap snippets bootdey">
+    <div class="row">
+      <div class="profile-nav col-md-3">
+          <div class="panel">
+              <div class="user-heading round border">
+                  <img class="imageProfile" id="image" src="" width="" height="">
+                  <h6 class="pt-3" id="nameProfile"></h6>
+                  <p id="emailProfile"></p>
+
+                  <div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop">
+                      Modificar perfil
+                    </button>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <form id="saveChangeUser">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="staticBackdropLabel"><b>Modificar perfil</b></h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>                             
+                            <div class="modal-body">                              
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">Nombre completo</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input class="form-control" type="text" name="name" id="nameMod" value="" required>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input class="form-control" type="text" name="email" id="emailMod" value="" required>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">Teléfono fijo</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input class="form-control" type="text" name="telephone" id="telMod" value="" required>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">Celular</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input class="form-control" type="text" name="mobile" id="mobileMod" value="" required>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">País y ciudad</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input class="form-control" type="text" name="country" id="countryMod" value="" required>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">Dirección</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input class="form-control" type="text" name="adress" id="adressMod" value="" required>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <h6 class="mb-0">Imagen</h6>
+                                  </div>
+                                  <div class="col-sm-9 text-secondary">
+                                    <input id="imageMod" type="file" value="">
+                                    <img id="img" src="" alt="">
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button type="submit" class="btn btn-warning" id="saveChange">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+      <div class="profile-info col-md-9">
+          <div class="panel border">
+              <div class="bio-graph-heading">
+                 <h3>Datos de usuario</h3>
+              </div>
+              <div class="panel-body bio-graph-info pl-3 pt-3">
+                  <div class="row">
+                      <div class="bio-row">
+                        <div class="col-sm">
+                          <p class="mb-0"><b>Nombre completo:</b></p>
+                        </div>
+                        <div class="col-sm text-secondary" id="name">
+                        </div>
+                      </div>
+                      <div class="bio-row">
+                        <div class="col-sm">
+                          <p class="mb-0"><b>Email:</b></p>
+                        </div>
+                        <div class="col-sm text-secondary" id="email">
+                        </div>
+                      </div>
+                      <div class="bio-row">
+                        <div class="col-sm">
+                          <p class="mb-0"><b>Teléfono fijo:</b></p>
+                        </div>
+                        <div class="col-sm text-secondary" id="tel">
+                        </div>
+                      </div>
+                      <div class="bio-row">
+                        <div class="col-sm">
+                          <p class="mb-0"><b>Celular:</b></p>
+                        </div>
+                        <div class="col-sm text-secondary" id="mobile">
+                        </div>
+                      </div>
+                      <div class="bio-row">
+                        <div class="col-sm">
+                          <p class="mb-0"><b>País y ciudad:</b></p>
+                        </div>
+                        <div class="col-sm text-secondary" id="country">
+                        </div>
+                      </div>
+                      <div class="bio-row">
+                        <div class="col-sm">
+                          <p class="mb-0"><b>Dirección:</b></p>
+                        </div>
+                        <div class="col-sm text-secondary" id="adress">
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div>
+          </div>
+      </div>
+    </div>
     </div>
   </div>
   <footer class="text-muted bg-light">

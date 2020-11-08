@@ -28,7 +28,7 @@ function showCart(array) {
                     <dd>` + product.currency + ` ` + product.unitCost+ `</dd>
                 </td>
                 <td>
-                    <div class="productCount mb-2">
+                    <div class="productCount mb-2 col-sm">
                         <button type="button" class="btn btn-secondary btn-sm" name="update_cart" title="Disminuir" onclick="subtract(product`+ i +`)"><span>-</span></button>
                         <input id="product`+ i +`" class="input-group-sm input-text" size="2" value="`+ product.count +`" readonly="readonly">
                         <button type="button" class="btn btn-secondary btn-sm" name="update_cart" title="Aumentar" onclick="add(product`+ i +`)"><span>+</span></button>

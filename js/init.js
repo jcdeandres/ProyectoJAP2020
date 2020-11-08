@@ -40,15 +40,6 @@ var getJSONData = function(url){
     });
 }
 
-function showUserOnly(email){
-  let user = "";
-  let i = 0;
-  while ((email != null) && (i < email.length) && (email[i] != "@")) {
-    user = user + email[i];
-    i++;
-  }
-  return user;
-}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -57,17 +48,14 @@ document.addEventListener("DOMContentLoaded", function(e){
   const showUser = document.getElementById('correo');
   const logout = document.getElementById('logout');
   let userName = localStorage.getItem('Email :');
-  let arrayUser = showUserOnly(userName);
-  localStorage.setItem('Usuario solo: ', arrayUser);
   if (userName === null) {
     window.location.href = 'login.html';
   }
   //Cerrar sesión
   logout.onclick = function() {
-    localStorage.clear();
-    localStorage.removeItem('Usuario solo: ');
+    localStorage.removeItem('Email :');
     location.reload();
   }
-  showUser.innerHTML = arrayUser;
+  showUser.innerHTML = localStorage.getItem('Usuario solo: ');
 
 });
